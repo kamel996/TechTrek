@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import axios from "axios";
 import {
   Row,
   Col,
@@ -10,12 +11,18 @@ import {
   ListGroupItem,
 } from "react-bootstrap";
 import Rating from "../components/Rating";
-import products from "../products";
-function ProductPage({ match }) {
+function ProductPage() {
   const { id } = useParams();
 
-  const product = products.find((p) => String(p._id) === id);
-  if (!product) return null;
+  const [product, setProduct] = useState([]);
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      const res = await axios.get(`/api/product/${id}`);
+      setProduct(res.data);
+    };
+    fetchProduct();
+  }, []);
 
   return (
     <>
@@ -70,7 +77,7 @@ function ProductPage({ match }) {
                   className="btn-block"
                   type="button"
                   disabled={product.countInStock === 0}
-                  style={{padding: '1.1rem 5.66rem'}}
+                  style={{ padding: "1.1rem 5.66rem" }}
                 >
                   Add To Cart
                 </Button>
