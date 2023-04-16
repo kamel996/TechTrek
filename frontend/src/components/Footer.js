@@ -5,7 +5,9 @@ import { Container } from "react-bootstrap";
 function Footer() {
   return (
     <Container>
-      <footer>Hello world</footer>
+      <footer>
+      Hello world
+      </footer>
     </Container>
   );
 }
