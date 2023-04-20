@@ -10,6 +10,7 @@ import {
   Routes,
 } from "react-router-dom";
 import ProductPage from "./Pages/ProductPage";
+import CartPage from "./Pages/CartPage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Routes>
             <Route path="/" Component={HomePage} exact />
             <Route path="/product/:id" Component={ProductPage} />
+            <Route path="/cart/:id?" Component={CartPage} />
           </Routes>
         </Container>
       </main>
