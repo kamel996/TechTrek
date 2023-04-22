@@ -30,8 +30,6 @@ function ProductPage(props) {
   const { loading, error, product } = productDetails;
 
   useEffect(() => {
-    console.log(id);
-    console.log(listProductDetails(id));
     dispatch(listProductDetails(id));
   }, [dispatch, id]);
 

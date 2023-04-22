@@ -9,7 +9,6 @@ import {
 } from "../constants/productConstant";
 
 const API_URL = process.env.REACT_APP_API_URL;
-console.log(API_URL, "dewewdwe");
 
 export const listProducts = () => async (dispatch) => {
   try {

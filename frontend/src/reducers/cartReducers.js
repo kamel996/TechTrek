@@ -1,7 +1,6 @@
 import { CARD_ADD_ITEM, CARD_REMOVE_ITEM } from "../constants/cartContant";
 
 export const cartReducer = (state = { cardItems: [] }, action) => {
-    console.log("initial state:", state);
 
   switch (action.type) {
     case CARD_ADD_ITEM:

@@ -42,7 +42,6 @@ const CartPage = () => {
 
   const checkoutHandler = () => {
     navigate("/login?redirect=shipping");
-    console.log("lol");
   };
   return (
     <Row>
