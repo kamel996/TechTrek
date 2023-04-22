@@ -10,7 +10,7 @@
     "dev": "concurrently \"npm run server\"  \"npm run client\"",
     "create:data": "node backend/seeder",
     "delete:data": "node backend/seeder -d",
-    "deploy": "npm install && npm run build"
+    "build": "npm install && npm run build"
   },
   "repository": {
     "type": "git",
