@@ -14,6 +14,7 @@ import CartPage from "./Pages/CartPage";
 import LoginPage from "./Pages/LoginPage";
 import RegisterPage from "./Pages/RegisterPage";
 import ProfilePage from "./Pages/ProfilePage";
+import ShippingPage from "./Pages/ShippingPage";
 
 function App() {
   return (
@@ -22,9 +23,10 @@ function App() {
       <main className="py-3">
         <Container>
           <Routes>
+            <Route path="/shipping" Component={ShippingPage} />
+            <Route path="/login" Component={LoginPage} />
             <Route path="/register" Component={RegisterPage} />
             <Route path="/profile" Component={ProfilePage} />
-            <Route path="/login" Component={LoginPage} />
             <Route path="/product/:id" Component={ProductPage} />
             <Route path="/cart/:id?" Component={CartPage} />
             <Route path="/" Component={HomePage} exact />
