@@ -1,14 +1,22 @@
 import React from "react";
 import { Nav } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
+import { useSelector } from "react-redux";
 
-function CheckoutSteps(step1, step2, step3, step4) {
+function CheckoutSteps({ step1, step2, step3, step4 }) {
+  const userLoggedIn = useSelector((state) => state.userLogin);
+  if (userLoggedIn) {
+    var { userInfo } = userLoggedIn;
+  }
+
   return (
-    <Nav className="justify-content-center mb-4" >
-      <Nav.Item> 
+    <Nav className="justify-content-center mb-4">
+      <Nav.Item>
         {step1 ? (
           <LinkContainer to="/login">
-            <Nav.Link >Sign In</Nav.Link>
+            <Nav.Link>
+              {userInfo && userInfo.token ? "Home" : "Sign In"}
+            </Nav.Link>
           </LinkContainer>
         ) : (
           <Nav.Link disabled>Sign In</Nav.Link>
@@ -17,7 +25,7 @@ function CheckoutSteps(step1, step2, step3, step4) {
       <Nav.Item>
         {step2 ? (
           <LinkContainer to="/shipping">
-            <Nav.Link >Shipping</Nav.Link>
+            <Nav.Link>Shipping</Nav.Link>
           </LinkContainer>
         ) : (
           <Nav.Link disabled>Shipping</Nav.Link>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link, redirect, useLocation, useSearchParams } from "react-router-dom";
 import { register } from "../actions/loginActions";
 import {
