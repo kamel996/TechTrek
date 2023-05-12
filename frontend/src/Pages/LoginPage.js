@@ -40,7 +40,7 @@ function LoginPage() {
     e.preventDefault();
     dispatch(login(email, password));
   };
-  console.log(redirect,'im redirect');
+  console.log(redirect, "im redirect");
   return (
     <FormContainer>
       <h1>Sign In</h1>
@@ -73,7 +73,9 @@ function LoginPage() {
         <Col>
           New customer ?{" "}
           <Link to={redirect ? `/register?redirect=/${redirect}` : "/register"}>
-            Register
+            <strong>
+              Register
+            </strong>
           </Link>
         </Col>
       </Row>

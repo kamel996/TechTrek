@@ -39,7 +39,7 @@ const PlaceOrderPage = () => {
 
   const orderCreate = useSelector((state) => state.orderCreate);
 
-  const { order, success, error } = createOrder;
+  const { order, success, error } = orderCreate;
 
   useEffect(() => {
     if (success) {
@@ -81,6 +81,7 @@ const PlaceOrderPage = () => {
             </ListGroupItem>
 
             <ListGroupItem>
+              
               <h2>Payment Method</h2>
               <strong>Method: </strong>
 
