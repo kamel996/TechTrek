@@ -19,6 +19,7 @@ import PaymentPage from "./Pages/PaymentPage";
 import PlaceOrderPage from "./Pages/PlaceOrderPage";
 import OrderPage from "./Pages/OrderPage";
 import UserListPage from "./Pages/UserListPage";
+import UserEditPage from "./Pages/UserEditPage";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
             <Route path="/product/:id" Component={ProductPage} />
             <Route path="/cart/:id?" Component={CartPage} />
             <Route path="/admin/userlist" Component={UserListPage} />
+            <Route path="/admin/user/:id/edit" Component={UserEditPage} />
             <Route path="/" Component={HomePage} exact />
           </Routes>
         </Container>

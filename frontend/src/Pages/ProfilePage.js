@@ -56,7 +56,7 @@ function ProfilePage() {
         setEmail(user.email);
       }
     }
-  }, [navigate, userInfo, dispatch, user]);
+  }, [navigate, userInfo, dispatch,]);
 
   const submitHandler = (e) => {
     e.preventDefault();
