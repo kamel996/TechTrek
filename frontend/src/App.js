@@ -20,6 +20,7 @@ import PlaceOrderPage from "./Pages/PlaceOrderPage";
 import OrderPage from "./Pages/OrderPage";
 import UserListPage from "./Pages/UserListPage";
 import UserEditPage from "./Pages/UserEditPage";
+import ProductListPage from "./Pages/ProductListPage";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
             <Route path="/profile" Component={ProfilePage} />
             <Route path="/product/:id" Component={ProductPage} />
             <Route path="/cart/:id?" Component={CartPage} />
+            <Route path="/admin/productlist" Component={ProductListPage} />
             <Route path="/admin/userlist" Component={UserListPage} />
             <Route path="/admin/user/:id/edit" Component={UserEditPage} />
             <Route path="/" Component={HomePage} exact />
