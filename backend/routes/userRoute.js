@@ -1,6 +1,7 @@
 import express from "express";
 import {
   authUser,
+  deleteUser,
   getUserProfile,
   getUsers,
   registerUser,
@@ -9,7 +10,7 @@ import {
 import { admin, protect } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
-
+router.route('/delete/:id').delete(deleteUser)
 router.route("/").post(registerUser);
 router.route("/").get(protect,admin, getUsers);
 router.route("/login").post(authUser);
