@@ -8,10 +8,10 @@ import Message from "../components/Message.js";
 
 function HomePage() {
   const dispatch = useDispatch();
-  
+
   const productList = useSelector((state) => state.productList);
 
-  const { loading, error, products } = productList
+  const { loading, error, products } = productList;
 
   useEffect(() => {
     dispatch(listProducts());
@@ -27,7 +27,7 @@ function HomePage() {
       ) : (
         <Row>
           {products.map((product) => (
-            <Col key={product._id} sm={12} md={6} lg={3} xl={4}>
+            <Col key={product._id} sm={12} md={4} lg={3} xl={3}>
               <Product product={product} />
             </Col>
           ))}
