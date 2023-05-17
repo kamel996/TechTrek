@@ -4,7 +4,7 @@ import { Table, Button } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import Message from "../components/Message";
 import Loading from "../components/Loading";
-import { listUsers, deleteUser} from "../actions/loginActions";
+import { listUsers, deleteUser } from "../actions/loginActions";
 import { useNavigate } from "react-router-dom";
 
 const UserListPage = () => {
@@ -23,11 +23,10 @@ const UserListPage = () => {
     } else {
       navigate("/login");
     }
-  }, [dispatch, navigate,successDelete,userInfo]);
+  }, [dispatch, navigate, successDelete, userInfo]);
   const deleteHandler = (id) => {
-    if(window.confirm("Are you sure?")){
-    dispatch(deleteUser(id));
-
+    if (window.confirm("Are you sure?")) {
+      dispatch(deleteUser(id));
     }
   };
   return (
@@ -50,6 +49,7 @@ const UserListPage = () => {
           <tbody>
             {users.map((user) => (
               <tr key={user._id}>
+                <td>{user._id}</td>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
                 <td>

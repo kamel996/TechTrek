@@ -25,7 +25,7 @@ export const listProducts = () => async (dispatch) => {
 
     const { data } = await axios.get(`${API_URL}/api/products`);
 
-    console.log(data, 'getting productsss')
+    console.log(data, "getting productsss");
 
     dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
   } catch (error) {
@@ -104,12 +104,14 @@ export const createProduct = () => async (dispatch, getState) => {
     };
 
     const { data } = await axios.post(`${API_URL}/api/products`, {}, config);
-    console.log("trying to request");
-
+    console.log(data, "im data in createrequest");
     dispatch({
       type: PRODUCT_CREATE_SUCCESS,
       payload: data,
+      
     });
+    console.log(data, "im data in cresuccesss");
+
   } catch (error) {
     dispatch({
       type: PRODUCT_CREATE_FAIL,

@@ -56,7 +56,7 @@ function ProfilePage() {
         setEmail(user.email);
       }
     }
-  }, [navigate, userInfo, dispatch,]);
+  }, [navigate, userInfo, dispatch]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -141,7 +141,7 @@ function ProfilePage() {
                 <tr key={order._id}>
                   <td>{order._id}</td>
                   <td>{order.createdAt.substring(0, 10)}</td>
-                  <td>{order.total}</td>
+                  <td>{order.totalPrice}</td>
                   <td>
                     {order.isPaid ? (
                       order.paidAt.substring(0, 10)
@@ -157,7 +157,7 @@ function ProfilePage() {
                     )}
                   </td>
                   <td>
-                    <LinkContainer to={`/order/${order.id}`}>
+                    <LinkContainer to={`/order/${order._id}`}>
                       <Button variant="light" className="btn-sm">
                         Details
                       </Button>

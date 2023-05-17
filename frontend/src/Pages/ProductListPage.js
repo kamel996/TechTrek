@@ -35,12 +35,14 @@ const ProductListPage = () => {
     product: createdProduct,
   } = productCreate;
 
+  console.log(createdProduct, "im created product");
+
   useEffect(() => {
     dispatch({ type: PRODUCT_CREATE_RESET });
     if (!userInfo.isAdmin) {
       navigate("/login");
     }
-    if (successCreate) {
+    if (successCreate && createdProduct) {
       navigate(`/admin/product/${createdProduct._id}/edit`);
     } else {
       dispatch(listProducts());
@@ -61,6 +63,8 @@ const ProductListPage = () => {
   const createProductHandler = () => {
     dispatch(createProduct());
   };
+      console.log(createdProduct, "im hereere");
+
   return (
     <>
       <Row className="align-items-center">

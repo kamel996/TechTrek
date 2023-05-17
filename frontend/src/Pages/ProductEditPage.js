@@ -49,7 +49,6 @@ function ProductEditPage() {
     error: errorUpdate,
   } = productUpdate;
 
-  console.log(product, "im product");
 
   useEffect(() => {
     if (successUpdate) {
@@ -68,7 +67,7 @@ function ProductEditPage() {
         setPrice(product.price);
       }
     }
-  }, [id, dispatch, navigate, product, successUpdate]);
+  }, [id, dispatch, navigate, successUpdate,product]);
 
   const uploadFileHandler = async (e) => {
     const file = e.target.files[0];
@@ -108,6 +107,9 @@ function ProductEditPage() {
       })
     );
   };
+
+  console.log(product, "im product");
+
   return (
     <>
       <Link to={"/admin/productlist"} className="btn btn-light my-3">
