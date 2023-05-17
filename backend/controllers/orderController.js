@@ -70,13 +70,20 @@ const updateOrderToPaid = expressAsyncHandler(async (req, res) => {
 const getUserOrders = expressAsyncHandler(async (req, res) => {
   try {
     const userId = req.user._id;
-    console.log(userId);
     const orders = await Order.find({ user: userId });
-    console.log(orders);
     res.json(orders);
   } catch (error) {
     console.error(error);
   }
 });
 
-export { addOrderItems, getOrderById, updateOrderToPaid, getUserOrders };
+const getOrders = expressAsyncHandler(async (req, res) => {
+  try {
+    const orders = await Order.find({}).populate('').populate('user', 'id name');
+    res.json(orders);
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+export { addOrderItems, getOrderById, updateOrderToPaid, getUserOrders, getOrders };

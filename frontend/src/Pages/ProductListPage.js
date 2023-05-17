@@ -9,7 +9,7 @@ import {
   listProducts,
   createProduct,
 } from "../actions/productActions";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { PRODUCT_CREATE_RESET } from "../constants/productConstant";
 
 const ProductListPage = () => {
@@ -35,7 +35,6 @@ const ProductListPage = () => {
     product: createdProduct,
   } = productCreate;
 
-  console.log(createdProduct, "im created product");
   useEffect(() => {
     dispatch({ type: PRODUCT_CREATE_RESET });
     if (!userInfo.isAdmin) {
