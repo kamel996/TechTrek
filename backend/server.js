@@ -1,10 +1,11 @@
 import express from "express";
 import dotenv from "dotenv";
+import path from "path";
 import connectDB from "./config/db.js";
 import productRoutes from "./routes/productsRoutes.js";
 import userRoutes from "./routes/userRoute.js";
 import orderRoutes from "./routes/orderRoutes.js";
-
+import uploadRoutes from "./routes/uploadRoutes.js";
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 import bodyParser from "body-parser";
 
@@ -23,12 +24,10 @@ app.use(cors());
 
 app.use(express.json());
 
-
 const PORT = process.env.PORT;
 
 app.get("/", (req, res) => {
   res.send("Api is running");
-  
 });
 
 app.get("/api/config/paypal", (req, res) => {
@@ -36,12 +35,12 @@ app.get("/api/config/paypal", (req, res) => {
 });
 
 app.use("/api/products", productRoutes);
-
 app.use("/api/users", userRoutes);
 app.use("/api/orders", orderRoutes);
+app.use("/api/uploads", uploadRoutes);
 
-
-
+const __dirname = path.resolve();
+app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
 app.use(notFound);
 

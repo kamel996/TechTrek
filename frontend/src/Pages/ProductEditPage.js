@@ -12,9 +12,9 @@ import {
   Button,
   FormLabel,
   FormControl,
-  FormCheck,
+  FormFile,
 } from "react-bootstrap";
-
+import axios from "axios";
 import FormContainer from "../components/FormContainer";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
@@ -31,9 +31,11 @@ function ProductEditPage() {
   const [category, setCategory] = useState("");
   const [countInStock, setCountInStock] = useState(0);
   const [description, setDescription] = useState("");
+  const [uploading, setUploading] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const API_URL = process.env.REACT_APP_API_URL;
 
   const productDetails = useSelector((state) => state.productDetails);
 
@@ -67,6 +69,29 @@ function ProductEditPage() {
       }
     }
   }, [id, dispatch, navigate, product, successUpdate]);
+
+  const uploadFileHandler = async (e) => {
+    const file = e.target.files[0];
+    const formData = new FormData();
+    console.log(file, "im file");
+    formData.append("image", file);
+    setUploading(true);
+
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      };
+      const { data } = await axios.post(
+        `${API_URL}/api/uploads`,
+        formData,
+        config
+      );
+      setImage(data);
+      setUploading(false);
+    } catch (error) {}
+  };
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -124,6 +149,9 @@ function ProductEditPage() {
                 value={image}
                 onChange={(e) => setImage(e.target.value)}
               ></FormControl>
+              <Form.Label>Choose File</Form.Label>
+              <FormControl type="file" onChange={uploadFileHandler} />
+              {uploading && <Loading />}
             </Form.Group>
             <Form.Group controlId="brand">
               <FormLabel>Brand</FormLabel>
@@ -171,5 +199,4 @@ function ProductEditPage() {
     </>
   );
 }
-
 export default ProductEditPage;
