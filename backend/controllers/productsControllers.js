@@ -2,15 +2,23 @@ import Product from "../models/productModel.js";
 import asyncHandler from "express-async-handler";
 
 export const getProducts = asyncHandler(async (req, res) => {
-  const keyword = req.query.keyword ? {
-    name: {
-      $regex: req.query.keyword,
-      $options: 'i'
-    }
-  } : {}
-  const products = await Product.find({...keyword});
+  const pagesize = 2;
+  const page = Number(req.query.pageNumber) || 1;
+  const keyword = req.query.keyword
+    ? {
+        name: {
+          $regex: req.query.keyword,
+          $options: "i",
+        },
+      }
+    : {};
 
-  res.json(products);
+  const count = await Product.count({ ...keyword });
+  const products = await Product.find({ ...keyword })
+    .limit(pagesize)
+    .skip(pagesize * (page - 1));
+
+  res.json({ products, page, pages: Math.ceil(count / pagesize) });
 });
 
 export const getProductById = asyncHandler(async (req, res) => {
@@ -89,7 +97,7 @@ export const createProductReview = asyncHandler(async (req, res) => {
       throw new Error("Product already reviewed");
     }
 
-    console.log(req.user, 'im req user');
+    console.log(req.user, "im req user");
     const review = {
       name: req.user.name,
       rating: Number(rating),
@@ -100,9 +108,10 @@ export const createProductReview = asyncHandler(async (req, res) => {
     product.reviews.push(review);
     product.numReviews = product.reviews.length;
 
-    product.rating =
-      parseFloat(product.reviews.reduce((acc, item) => item.rating + acc, 0) /
-      product.reviews.length)
+    product.rating = parseFloat(
+      product.reviews.reduce((acc, item) => item.rating + acc, 0) /
+        product.reviews.length
+    );
 
     await product.save();
     res.status(201).json({ message: "Review added" });

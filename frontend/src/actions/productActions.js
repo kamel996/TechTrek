@@ -23,13 +23,13 @@ import {
 const API_URL = process.env.REACT_APP_API_URL;
 
 export const listProducts =
-  (keyword = "") =>
+  (keyword = "", pageNumber = "") =>
   async (dispatch) => {
     try {
       dispatch({ type: PRODUCT_LIST_REQUEST });
 
       const { data } = await axios.get(
-        `${API_URL}/api/products?keyword=${keyword}`
+        `${API_URL}/api/products?keyword=${keyword}&pageNumber=${pageNumber}`
       );
 
       console.log(data, "getting productsss");

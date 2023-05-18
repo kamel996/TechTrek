@@ -11,12 +11,15 @@ import {
 } from "../actions/productActions";
 import { useNavigate } from "react-router-dom";
 import { PRODUCT_CREATE_RESET } from "../constants/productConstant";
+import Paginate from "../components/Paginate";
+import { useParams } from "react-router-dom";
 
 const ProductListPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { pageNumber } = useParams() || 1;
   const productList = useSelector((state) => state.productList);
-  const { loading, error, products } = productList;
+  const { loading, error, products, page, pages } = productList;
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
@@ -35,7 +38,6 @@ const ProductListPage = () => {
     product: createdProduct,
   } = productCreate;
 
-
   useEffect(() => {
     dispatch({ type: PRODUCT_CREATE_RESET });
     if (!userInfo.isAdmin) {
@@ -53,6 +55,7 @@ const ProductListPage = () => {
     successDelete,
     successCreate,
     createdProduct,
+    pageNumber,
   ]);
   const deleteHandler = (id) => {
     if (window.confirm("Are you sure?")) {
@@ -60,7 +63,7 @@ const ProductListPage = () => {
     }
   };
   const createProductHandler = () => {
-    dispatch(createProduct());
+    dispatch(createProduct(``, pageNumber));
   };
 
   return (
@@ -69,7 +72,7 @@ const ProductListPage = () => {
         <Col>
           <h1>Products</h1>
         </Col>
-        <Col className="text-right" style={{textAlign: 'right'}}>
+        <Col className="text-right" style={{ textAlign: "right" }}>
           <Button className="my-3" onClick={createProductHandler}>
             <i className="fas fa-plus"></i>Create Product
           </Button>
@@ -84,42 +87,45 @@ const ProductListPage = () => {
       ) : error ? (
         <Message variant="danger">{error}</Message>
       ) : (
-        <Table striped bordered hover responsive className="table-sm">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Price</th>
-              <th>Category</th>
-              <th>Brand</th>
-            </tr>
-          </thead>
-          <tbody>
-            {products.map((product) => (
-              <tr key={product._id}>
-                <td>{product._id}</td>
-                <td>{product.name}</td>
-                <td>${product.price}</td>
-                <td>{product.category}</td>
-                <td>{product.brand}</td>
-                <td>
-                  <LinkContainer to={`/admin/product/${product._id}/edit`}>
-                    <Button variant="light" className="btn-sm">
-                      <i className="fas fa-edit"></i>
-                    </Button>
-                  </LinkContainer>
-                  <Button
-                    variant="danger"
-                    className="btn-sm"
-                    onClick={() => deleteHandler(product._id)}
-                  >
-                    <i className="fas fa-trash"></i>
-                  </Button>
-                </td>
+        <>
+          <Table striped bordered hover responsive className="table-sm">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Brand</th>
               </tr>
-            ))}
-          </tbody>
-        </Table>
+            </thead>
+            <tbody>
+              {products.map((product) => (
+                <tr key={product._id}>
+                  <td>{product._id}</td>
+                  <td>{product.name}</td>
+                  <td>${product.price}</td>
+                  <td>{product.category}</td>
+                  <td>{product.brand}</td>
+                  <td>
+                    <LinkContainer to={`/admin/product/${product._id}/edit`}>
+                      <Button variant="light" className="btn-sm">
+                        <i className="fas fa-edit"></i>
+                      </Button>
+                    </LinkContainer>
+                    <Button
+                      variant="danger"
+                      className="btn-sm"
+                      onClick={() => deleteHandler(product._id)}
+                    >
+                      <i className="fas fa-trash"></i>
+                    </Button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+          <Paginate pages={pages} page={page} isAdmin={true} />
+        </>
       )}
     </>
   );
