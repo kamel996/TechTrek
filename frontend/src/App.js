@@ -45,6 +45,7 @@ function App() {
             <Route path="/admin/product/:id/edit" Component={ProductEditPage} />
             <Route path="/admin/userlist" Component={UserListPage} />
             <Route path="/admin/user/:id/edit" Component={UserEditPage} />
+            <Route path="/search/:keyword" Component={HomePage}  />
             <Route path="/" Component={HomePage} exact />
           </Routes>
         </Container>
