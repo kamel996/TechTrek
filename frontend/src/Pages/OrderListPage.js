@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { LinkContainer } from "react-router-bootstrap";
 import { Table, Button, Row, Col } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
@@ -30,7 +30,7 @@ const OrderListPage = () => {
     }
   }, [dispatch, navigate, userInfo]);
 
-  console.log(orders, "im orderssss");
+  console.log(orders);
   return (
     <>
       <Row className="align-items-center">

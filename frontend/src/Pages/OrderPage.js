@@ -89,14 +89,14 @@ const OrderPage = () => {
         setSdkReady(true);
       }
     }
-  }, [dispatch, id, successPay, successDelivered]);
+  }, [dispatch, successPay, successDelivered, navigate, id]);
 
   const deliverHandler = () => {
     dispatch(deliveredOrder(id));
   };
 
   return loading ? (
-    <Loader />
+    <Loading />
   ) : error ? (
     <Message>{error}</Message>
   ) : (

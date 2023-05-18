@@ -35,7 +35,6 @@ const ProductListPage = () => {
     product: createdProduct,
   } = productCreate;
 
-  console.log(createdProduct, "im created product");
 
   useEffect(() => {
     dispatch({ type: PRODUCT_CREATE_RESET });
@@ -63,7 +62,6 @@ const ProductListPage = () => {
   const createProductHandler = () => {
     dispatch(createProduct());
   };
-      console.log(createdProduct, "im hereere");
 
   return (
     <>
@@ -71,7 +69,7 @@ const ProductListPage = () => {
         <Col>
           <h1>Products</h1>
         </Col>
-        <Col className="text-right">
+        <Col className="text-right" style={{textAlign: 'right'}}>
           <Button className="my-3" onClick={createProductHandler}>
             <i className="fas fa-plus"></i>Create Product
           </Button>

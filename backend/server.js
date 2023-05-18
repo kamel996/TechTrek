@@ -8,6 +8,7 @@ import orderRoutes from "./routes/orderRoutes.js";
 import uploadRoutes from "./routes/uploadRoutes.js";
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 import bodyParser from "body-parser";
+import morgan from "morgan";
 
 import cors from "cors";
 
@@ -17,6 +18,11 @@ dotenv.config();
 cors();
 connectDB();
 const app = express();
+
+if (process.env.NODE_ENV === "development") {
+  app.use(morgan("dev"));
+}
+
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
