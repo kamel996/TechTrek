@@ -38,11 +38,12 @@ export const createOrder = (order) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.post(`${API_URL}/api/orders`, order, config);
+    const response = await axios.post(`${API_URL}/api/orders`, order, config);
     dispatch({
       type: ORDER_CREATE_SUCCESS,
-      payload: data,
+      payload: response.data,
     });
+    console.log(response, "imresss");
   } catch (error) {
     dispatch({
       type: ORDER_CREATE_FAIL,

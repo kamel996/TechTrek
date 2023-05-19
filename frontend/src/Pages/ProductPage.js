@@ -53,14 +53,18 @@ function ProductPage(props) {
     dispatch(listProductDetails(id));
   }, [dispatch, id, productReviewSuccess]);
 
+   useEffect(() => {
+     window.scrollTo(0, 0); // Scroll to the top when component mounts or updates
+   }, []);
   const addToCartHandler = () => {
-    const pid = id.id;
+    const pid = id;
     navigate(`/cart/${pid}?qty=${qty}`);
   };
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(createdProductReview(id, { rating, comment }));
   };
+  console.log(id, "im id");
   return (
     <>
       <Link className="btn btn-light my-3" to="/">

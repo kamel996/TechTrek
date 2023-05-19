@@ -25,7 +25,7 @@ const SearchBox = () => {
   };
 
   return (
-    <Form onSubmit={submitHandler} inline>
+    <Form onSubmit={submitHandler} inline="true">
       <div style={{ display: "flex" }}>
         <FormControl
           type="text"

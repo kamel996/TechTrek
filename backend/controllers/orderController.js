@@ -1,5 +1,6 @@
 import expressAsyncHandler from "express-async-handler";
 import Order from "../models/orderModel.js";
+import Product from "../models/productModel.js";
 import mongoose from "mongoose";
 
 const addOrderItems = expressAsyncHandler(async (req, res) => {
@@ -28,6 +29,15 @@ const addOrderItems = expressAsyncHandler(async (req, res) => {
       shippingPrice,
       totalPrice,
     });
+    for (const orderItem of orderItems) {
+      const product = await Product.findById(orderItem.product);
+
+      if (product) {
+        console.log("Order Items", product.countInStock);
+        product.countInStock -= orderItem.qty;
+        await product.save();
+      }
+    }
     const createdOrder = await order.save();
     res.status(201).json(createdOrder);
   }

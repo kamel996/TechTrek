@@ -124,7 +124,7 @@ const ProductListPage = () => {
               ))}
             </tbody>
           </Table>
-          <Paginate pages={pages} page={page} isAdmin={true} />
+          <Paginate pages={pages} page={page} isadmin={true.toString()} />
         </>
       )}
     </>
