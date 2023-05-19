@@ -21,6 +21,7 @@ import {
 } from "../actions/orderActions";
 import {
   ORDER_DELIVERED_RESET,
+  ORDER_DETAILS_RESET,
   ORDER_PAY_RESET,
 } from "../constants/orderConstant";
 import axios from "axios";
@@ -39,6 +40,11 @@ const OrderPage = () => {
   const orderDelivered = useSelector((state) => state.orderDelivered);
   const { loading: loadingDelivered, success: successDelivered } =
     orderDelivered;
+
+  const orderCreate = useSelector((state) => state.orderCreate);
+
+  const { success } = orderCreate;
+
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -61,6 +67,7 @@ const OrderPage = () => {
   };
 
   useEffect(() => {
+    dispatch({ type: ORDER_DETAILS_RESET });
     if (!userInfo) {
       navigate("/login");
     }
@@ -89,7 +96,7 @@ const OrderPage = () => {
         setSdkReady(true);
       }
     }
-  }, [dispatch, successPay, successDelivered, navigate, id]);
+  }, [dispatch, successPay, successDelivered, navigate, id, success]);
 
   const deliverHandler = () => {
     dispatch(deliveredOrder(id));
@@ -101,7 +108,7 @@ const OrderPage = () => {
     <Message>{error}</Message>
   ) : (
     <>
-      {order.orderItems && (
+      {order && order.orderItems && order.user && (
         <>
           <h1>Order {order._id}</h1>
           <Row>
@@ -119,16 +126,20 @@ const OrderPage = () => {
                       {order.user.email}
                     </a>
                   </p>
-                  <p>
-                    <strong>
-                      Address:
-                      <br />
-                      {order.shippingAddress.address},{" "}
-                      {order.shippingAddress.city},{" "}
-                      {order.shippingAddress.postalCode},{" "}
-                      {order.shippingAddress.country}
-                    </strong>
-                  </p>
+                  {order &&
+                    order.shippingAddress &&
+                    order.shippingAddress.address && (
+                      <p>
+                        <strong>
+                          Address:
+                          <br />
+                          {order.shippingAddress.address},{" "}
+                          {order.shippingAddress.city},{" "}
+                          {order.shippingAddress.postalCode},{" "}
+                          {order.shippingAddress.country}
+                        </strong>
+                      </p>
+                    )}
                   {order.isDelivered ? (
                     <Message variant="success">
                       Delivered On {order.deliveredAt}
@@ -154,33 +165,34 @@ const OrderPage = () => {
 
                 <ListGroupItem>
                   <h2>Order Items</h2>
-                  {order.orderItems.length === 0 ? (
+                  {order && order.orderItems.length === 0 ? (
                     <Message>Order is empty</Message>
                   ) : (
                     <ListGroup variant="flush">
-                      {order.orderItems.map((item, index) => (
-                        <ListGroupItem key={index}>
-                          <Row>
-                            <Col md={1}>
-                              <Image
-                                src={item.image}
-                                alt={item.name}
-                                fluid
-                                rounded
-                              />
-                            </Col>
-                            <Col>
-                              <Link to={`/product/${item.product}`}>
-                                {item.name}
-                              </Link>
-                            </Col>
-                            <Col md={4}>
-                              {item.qty} x ${item.price} = $
-                              {item.qty * item.price}
-                            </Col>
-                          </Row>
-                        </ListGroupItem>
-                      ))}
+                      {order &&
+                        order.orderItems.map((item, index) => (
+                          <ListGroupItem key={index}>
+                            <Row>
+                              <Col md={1}>
+                                <Image
+                                  src={item.image}
+                                  alt={item.name}
+                                  fluid
+                                  rounded
+                                />
+                              </Col>
+                              <Col>
+                                <Link to={`/product/${item.product}`}>
+                                  {item.name}
+                                </Link>
+                              </Col>
+                              <Col md={4}>
+                                {item.qty} x ${item.price} = $
+                                {item.qty * item.price}
+                              </Col>
+                            </Row>
+                          </ListGroupItem>
+                        ))}
                     </ListGroup>
                   )}
                 </ListGroupItem>

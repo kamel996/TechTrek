@@ -1,15 +1,18 @@
-import React from 'react'
+import React from "react";
 import { Container } from "react-bootstrap";
 
-
-function Footer() {
+const Footer = () => {
   return (
-    <Container>
-      <footer>
-      Hello world
-      </footer>
-    </Container>
+    <footer>
+      <Container className="text-center py-3">
+        <p>
+          {" "}
+          &copy;
+          <strong>2023 Kamel's Ecommerce. All rights reserved.</strong>{" "}
+        </p>
+      </Container>
+    </footer>
   );
-}
+};
 
-export default Footer
+export default Footer;

@@ -24,6 +24,7 @@ import { useNavigate } from "react-router-dom";
 import Loading from "../components/Loading";
 import Message from "../components/Message";
 import { PRODUCT_CREATE_REVIEW_RESET } from "../constants/productConstant";
+import { CARD_RESET_ITEM } from "../constants/cartContant";
 function ProductPage(props) {
   const [qty, setQty] = useState(1);
   const [rating, setRating] = useState(0);
@@ -53,9 +54,9 @@ function ProductPage(props) {
     dispatch(listProductDetails(id));
   }, [dispatch, id, productReviewSuccess]);
 
-   useEffect(() => {
-     window.scrollTo(0, 0); // Scroll to the top when component mounts or updates
-   }, []);
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to the top when component mounts or updates
+  }, []);
   const addToCartHandler = () => {
     const pid = id;
     navigate(`/cart/${pid}?qty=${qty}`);
@@ -133,13 +134,15 @@ function ProductPage(props) {
                             value={qty}
                             onChange={(e) => setQty(e.target.value)}
                           >
-                            {[...Array(product.countInStock).keys()].map(
-                              (x) => (
-                                <option key={x + 1} value={x + 1}>
-                                  {x + 1}
-                                </option>
-                              )
-                            )}
+                            {[
+                              ...Array(
+                                Math.min(10, product.countInStock)
+                              ).keys(),
+                            ].map((x) => (
+                              <option key={x + 1} value={x + 1}>
+                                {x + 1}
+                              </option>
+                            ))}
                           </FormControl>
                         </Col>
                       </Row>
@@ -150,7 +153,7 @@ function ProductPage(props) {
                       onClick={addToCartHandler}
                       className="btn-block"
                       type="button"
-                      disabled={product.countInStock === 0}
+                      disabled={product.countInStock <= 0}
                       style={{ padding: "1.1rem 5.66rem" }}
                     >
                       Add To Cart

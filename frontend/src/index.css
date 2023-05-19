@@ -44,6 +44,26 @@ code {
   margin-top: 8rem;
   margin-left: 29rem;
 }
+.buy-now-button{
+      background-color: rgb(0, 0, 0);
+    color: white;
+    padding: 1rem 4.37rem;
+}
+
+
+.cardp {
+  transform-style: preserve-3d;
+  position: relative;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  transition: all 0.1s ease;
+}
+
+
 
 @media (max-width: 1400px) {
   .carousel-caption h3 {
@@ -56,3 +76,10 @@ code {
     font-size: 1.11rem;
   }
 }
+
+@media (max-width:  600px) {
+.buy-now-button{
+  padding: 0.75rem 10rem;
+}
+}
+

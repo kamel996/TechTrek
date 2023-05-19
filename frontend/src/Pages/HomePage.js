@@ -27,7 +27,7 @@ function HomePage() {
 
   return (
     <>
-    {!keyword && <TopProductsCarousel />  }
+      {!keyword && <TopProductsCarousel />}
       <h1>Latest Products</h1>
 
       {loading ? (
@@ -36,7 +36,7 @@ function HomePage() {
         <Message variant="danger">{error}</Message>
       ) : (
         <>
-          <Row>
+          <Row style={{ backgroundColor: "whitesmoke" }}>
             {products.map((product) => (
               <Col key={product._id} sm={12} md={4} lg={3} xl={3}>
                 <Product product={product} />
