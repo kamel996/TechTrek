@@ -97,7 +97,6 @@ export const createProductReview = asyncHandler(async (req, res) => {
       throw new Error("Product already reviewed");
     }
 
-    console.log(req.user, "im req user");
     const review = {
       name: req.user.name,
       rating: Number(rating),
@@ -119,4 +118,10 @@ export const createProductReview = asyncHandler(async (req, res) => {
     res.status(404);
     throw new Error("Product not found");
   }
+});
+
+export const getTopProducts = asyncHandler(async (req, res) => {
+  const products = await Product.find({}).sort({ rating: -1 }).limit(3);
+
+  res.status(201).json(products);
 });
