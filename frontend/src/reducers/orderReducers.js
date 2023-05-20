@@ -8,6 +8,7 @@ import {
   ORDER_CREATE_RESET,
   ORDER_CREATE_SUCCESS,
   ORDER_DELIVERED_FAIL,
+  ORDER_DELIVERED_REQUEST,
   ORDER_DELIVERED_RESET,
   ORDER_DELIVERED_SUCCESS,
   ORDER_DETAILS_FAIL,
@@ -101,7 +102,12 @@ export const orderAllReducer = (state = { orders: [] }, action) => {
       return { loading: true };
 
     case ORDER_ALL_SUCCESS:
-      return { loading: false, orders: action.payload };
+      return {
+        loading: false,
+        orders: action.payload.orders,
+        pages: action.payload.pages,
+        page: action.payload.page,
+      };
 
     case ORDER_ALL_FAIL:
       return { loading: false, error: action.payload };
@@ -114,7 +120,7 @@ export const orderAllReducer = (state = { orders: [] }, action) => {
 
 export const orderDeliveredReducer = (state = {}, action) => {
   switch (action.type) {
-    case ORDER_DELIVERED_RESET:
+    case ORDER_DELIVERED_REQUEST:
       return { ...state, loading: true };
 
     case ORDER_DELIVERED_SUCCESS:

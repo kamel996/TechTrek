@@ -1,7 +1,6 @@
 import expressAsyncHandler from "express-async-handler";
 import Order from "../models/orderModel.js";
 import Product from "../models/productModel.js";
-import mongoose from "mongoose";
 
 const addOrderItems = expressAsyncHandler(async (req, res) => {
   const {
@@ -88,11 +87,28 @@ const getUserOrders = expressAsyncHandler(async (req, res) => {
 });
 
 const getOrders = expressAsyncHandler(async (req, res) => {
+  const pagesize = 10;
+  const page = Number(req.query.pageNumber) || 1;
+  const keyword = req.query.keyword
+    ? {
+        name: {
+          $regex: req.query.keyword,
+          $options: "i",
+        },
+      }
+    : {};
+  console.log(keyword, "im keyword");
+
   try {
-    const orders = await Order.find({})
-      .populate("")
+    const count = await Order.count({ ...keyword });
+    const orders = await Order.find({ ...keyword })
+      .sort({ createdAt: -1 })
+      .limit(pagesize)
+      .skip(pagesize * (page - 1))
       .populate("user", "id name");
-    res.json(orders);
+
+    res.json({ orders, page, pages: Math.ceil(count / pagesize) });
+    
   } catch (error) {
     console.error(error);
   }

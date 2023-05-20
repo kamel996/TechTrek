@@ -45,7 +45,6 @@ const OrderPage = () => {
 
   const { success } = orderCreate;
 
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -66,23 +65,33 @@ const OrderPage = () => {
     dispatch(payOrder(id, paymentResult));
   };
 
+  console.log(loadingDelivered, "loading...");
   useEffect(() => {
-    dispatch({ type: ORDER_DETAILS_RESET });
     if (!userInfo) {
       navigate("/login");
     }
+
     const addPaypalScript = async () => {
-      const { data: clientId } = await axios.get(
-        "http://localhost:5000/api/config/paypal"
-      );
-      const script = document.createElement("script");
-      script.type = "text/javascript";
-      script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`;
-      script.async = true;
-      script.onload = () => {
-        setSdkReady(true);
-      };
-      document.body.appendChild(script);
+      try {
+        const { data: clientId } = await axios.get(
+          "http://localhost:5000/api/config/paypal"
+        );
+        console.log(clientId, "dedwewd");
+
+        const script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`;
+        script.async = true;
+        script.onload = () => {
+          setSdkReady(true);
+        };
+        document.body.appendChild(script);
+        console.log(script, "scriptt");
+      } catch (error) {
+        throw new Error(
+          `SDK Validation error: 'Invalid query value for client-id: `
+        );
+      }
     };
 
     if (!order || successPay || successDelivered) {
@@ -96,7 +105,7 @@ const OrderPage = () => {
         setSdkReady(true);
       }
     }
-  }, [dispatch, successPay, successDelivered, navigate, id, success]);
+  }, [dispatch, successPay, successDelivered, navigate, id, success, order]);
 
   const deliverHandler = () => {
     dispatch(deliveredOrder(id));
@@ -248,6 +257,7 @@ const OrderPage = () => {
                       <Message variant="danger">{error}</Message>{" "}
                     </ListGroupItem>
                   )}
+
                   {userInfo &&
                     userInfo.isAdmin &&
                     order.isPaid &&
@@ -260,6 +270,7 @@ const OrderPage = () => {
                         >
                           Mark As Delivered
                         </Button>
+                        {loadingDelivered && <Loading />}
                       </ListGroupItem>
                     )}
                 </ListGroup>

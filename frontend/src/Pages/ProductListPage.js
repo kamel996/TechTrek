@@ -63,7 +63,7 @@ const ProductListPage = () => {
     }
   };
   const createProductHandler = () => {
-    dispatch(createProduct(``, pageNumber));
+    navigate("/admin/product/create");
   };
 
   return (

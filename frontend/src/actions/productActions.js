@@ -99,7 +99,7 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
   }
 };
 
-export const createProduct = () => async (dispatch, getState) => {
+export const createProduct = (product) => async (dispatch, getState) => {
   try {
     dispatch({
       type: PRODUCT_CREATE_REQUEST,
@@ -113,13 +113,11 @@ export const createProduct = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.post(`${API_URL}/api/products`, {}, config);
-    console.log(data, "im data in createrequest");
+    const response = await axios.post(`${API_URL}/api/products`, product, config);
+    console.log(response, "im data in createrequest");
     dispatch({
       type: PRODUCT_CREATE_SUCCESS,
-      payload: data,
     });
-    console.log(data, "im data in cresuccesss");
   } catch (error) {
     dispatch({
       type: PRODUCT_CREATE_FAIL,

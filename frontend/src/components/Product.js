@@ -12,16 +12,13 @@ function Product({ product }) {
       return (
         <>
           <p>{truncatedDescription}</p>
-          <Link to={`/product/${product._id}`} className="product-details-link">
-            More Details
-          </Link>
         </>
       );
     }
   };
 
   useEffect(() => {
-    window.scrollTo(0, 0); // Scroll to the top when component mounts or updates
+    window.scrollTo(0, 0); // Scroll to the top when component mounts or updates 4bbf73;
   }, []);
 
   return (
@@ -39,7 +36,15 @@ function Product({ product }) {
         </Link>
         <Card.Body>
           <Link to={`/product/${product._id}`} className="product-name-link">
-            <Card.Title as="div" className="product-name">
+            <Card.Title
+              as="div"
+              className="product-name"
+              style={{
+                height: "3rem",
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
               {product.name}
             </Card.Title>
           </Link>
@@ -52,7 +57,9 @@ function Product({ product }) {
           <Card.Text as="h3" className="product-price">
             ${product.price}
           </Card.Text>
-          {renderDescription()}
+          <Link to={`/product/${product._id}`} className="product-details-link" style={{textDecoration: 'none'}}>
+            <strong className="descripti">Description</strong>
+          </Link>
           <Card.Footer
             style={{
               backgroundColor: "transparent",
@@ -70,13 +77,13 @@ function Product({ product }) {
                 Buy Now
               </Button>
             )}
+
             {product.countInStock > 0 && (
               <Link to={`/product/${product._id}`}>
                 <Button
                   variant="primary"
                   disabled={product.countInStock <= 0}
                   className="buy-now-button"
-                  
                 >
                   Buy Now
                 </Button>

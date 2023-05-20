@@ -28,7 +28,7 @@ function HomePage() {
   return (
     <>
       {!keyword && <TopProductsCarousel />}
-      <h1>Latest Products</h1>
+      <h1 style={{ marginTop: "0.6rem" }}>Latest Products</h1>
 
       {loading ? (
         <Loading />
@@ -47,6 +47,7 @@ function HomePage() {
             pages={pages}
             page={page}
             keyword={keyword ? keyword : ""}
+            isadmin={false.toString()}
           />
         </>
       )}

@@ -44,12 +44,45 @@ code {
   margin-top: 8rem;
   margin-left: 29rem;
 }
-.buy-now-button{
-      background-color: rgb(0, 0, 0);
-    color: white;
-    padding: 1rem 4.37rem;
+.buy-now-button {
+  background-color: #2f8d50;
+  color: white;
+  padding: 1rem 4.37rem;
+}
+.buy-now-button:hover {
+  background-color: #2cce65 !important;
+  color: white;
+  padding: 1rem 4.37rem;
 }
 
+.product-details-link {
+  display: inline-block;
+  position: relative;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  transition: color 0.3s ease-in-out;
+}
+
+.product-details-link:hover {
+  color: #ff5500;
+}
+
+.product-details-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background-color: #ff5500;
+  transform: scaleX(0);
+  transition: transform 0.3s ease-in-out;
+}
+
+.product-details-link:hover::after {
+  transform: scaleX(1);
+}
 
 .cardp {
   transform-style: preserve-3d;
@@ -63,7 +96,11 @@ code {
   transition: all 0.1s ease;
 }
 
-
+.card-img,
+.card-img-bottom,
+.card-img-top {
+  height: 14rem;
+}
 
 @media (max-width: 1400px) {
   .carousel-caption h3 {
@@ -77,9 +114,8 @@ code {
   }
 }
 
-@media (max-width:  600px) {
-.buy-now-button{
-  padding: 0.75rem 10rem;
+@media (max-width: 600px) {
+  .buy-now-button {
+    padding: 0.75rem 10rem;
+  }
 }
-}
-
