@@ -6,11 +6,14 @@ import Rating from "./Rating";
 function Product({ product }) {
   const renderDescription = () => {
     if (product.description.length <= 40) {
+      
       return <Card.Text>{product.description}</Card.Text>;
     } else {
       const truncatedDescription = product.description.substring(0, 40) + "...";
       return (
         <>
+          {" "}
+       
           <p>{truncatedDescription}</p>
         </>
       );
@@ -57,7 +60,12 @@ function Product({ product }) {
           <Card.Text as="h3" className="product-price">
             ${product.price}
           </Card.Text>
-          <Link to={`/product/${product._id}`} className="product-details-link" style={{textDecoration: 'none'}}>
+          {renderDescription()}
+          <Link
+            to={`/product/${product._id}`}
+            className="product-details-link"
+            style={{ textDecoration: "none" }}
+          >
             <strong className="descripti">Description</strong>
           </Link>
           <Card.Footer
@@ -72,9 +80,9 @@ function Product({ product }) {
               <Button
                 variant="primary"
                 disabled={product.countInStock <= 0}
-                className="buy-now-button"
+                className="buy-now-buttonn"
               >
-                Buy Now
+                Out Of Stock
               </Button>
             )}
 

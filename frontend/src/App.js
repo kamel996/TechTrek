@@ -41,11 +41,7 @@ function App() {
             <Route path="/profile" Component={ProfilePage} />
             <Route path="/product/:id" Component={ProductPage} />
             <Route path="/cart/:id?" Component={CartPage} />
-            <Route
-              path="/admin/orderlist"
-              Component={OrderListPage}
-              exact
-            />
+            <Route path="/admin/orderlist" Component={OrderListPage} exact />
             <Route
               path="/admin/orderlist/:pageNumber"
               Component={OrderListPage}
@@ -75,7 +71,7 @@ function App() {
           </Routes>
         </Container>
       </main>
-      <Footer />
+      <Footer className="sticky-footer" />
     </BrowserRouter>
   );
 }

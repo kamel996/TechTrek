@@ -12,6 +12,7 @@ code {
     monospace;
 }
 
+
 .carousel-item-next,
 .carousel-item-prev,
 .carousel-item.active {
@@ -45,12 +46,16 @@ code {
   margin-left: 29rem;
 }
 .buy-now-button {
-  background-color: #2f8d50;
+  background-color: #548fc9;
   color: white;
   padding: 1rem 4.37rem;
 }
+.buy-now-buttonn {
+  color: white;
+  padding:1rem 3.2rem;
+}
 .buy-now-button:hover {
-  background-color: #2cce65 !important;
+  background-color: #0c2e53 !important;
   color: white;
   padding: 1rem 4.37rem;
 }
@@ -65,17 +70,17 @@ code {
 }
 
 .product-details-link:hover {
-  color: #ff5500;
+  color: #3cc452;
 }
 
 .product-details-link::after {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   bottom: -2px;
   width: 100%;
   height: 2px;
-  background-color: #ff5500;
+  background-color: #149445;
   transform: scaleX(0);
   transition: transform 0.3s ease-in-out;
 }
@@ -88,8 +93,8 @@ code {
   transform-style: preserve-3d;
   position: relative;
   padding: 25px;
-  border-radius: 20px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 20px !important;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 4px 17px;
   display: flex;
   align-items: center;
   flex-direction: column;

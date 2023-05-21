@@ -23,6 +23,8 @@ const OrderListPage = () => {
   const { pageNumber } = useParams() || 1;
   const { keyword } = useParams();
 
+  console.log(orders, "orderss");
+
   useEffect(() => {
     dispatch({ type: ORDER_ALL_RESET });
     dispatch({ type: ORDER_DETAILS_RESET });
@@ -31,7 +33,7 @@ const OrderListPage = () => {
     } else {
       dispatch(allOrders(keyword, pageNumber));
     }
-  }, [dispatch, navigate, userInfo, pageNumber,keyword]);
+  }, [dispatch, navigate, userInfo, pageNumber, keyword]);
 
   return (
     <>
@@ -62,7 +64,7 @@ const OrderListPage = () => {
                 <tr key={order._id}>
                   <td>{order._id}</td>
                   <td>{order.createdAt.substring(0, 10)}</td>
-                  <td>{order.user.name}</td>
+                  <td>{order.user && order.user.name != null ? order.user.name : "Deleted Customer"}</td>
                   <td>${order.totalPrice}</td>
                   <td>
                     {order.isPaid ? (

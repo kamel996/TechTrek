@@ -48,6 +48,7 @@ function HomePage() {
             page={page}
             keyword={keyword ? keyword : ""}
             isadmin={false.toString()}
+            home={true.toString()}
           />
         </>
       )}

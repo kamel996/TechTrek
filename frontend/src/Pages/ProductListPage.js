@@ -18,6 +18,7 @@ const ProductListPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { pageNumber } = useParams() || 1;
+  const { keyword } = useParams();
   const productList = useSelector((state) => state.productList);
   const { loading, error, products, page, pages } = productList;
   const userLogin = useSelector((state) => state.userLogin);
@@ -46,7 +47,7 @@ const ProductListPage = () => {
     if (successCreate && createdProduct) {
       navigate(`/admin/product/${createdProduct._id}/edit`);
     } else {
-      dispatch(listProducts());
+      dispatch(listProducts(keyword, pageNumber));
     }
   }, [
     dispatch,
