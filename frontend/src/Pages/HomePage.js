@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Modal } from "react-bootstrap";
 import Product from "../components/Product.js";
 import { listProducts } from "../actions/productActions.js";
 import Loading from "../components/Loading.js";
@@ -8,6 +8,7 @@ import Message from "../components/Message.js";
 import { useParams } from "react-router-dom";
 import Paginate from "../components/Paginate.js";
 import TopProductsCarousel from "../components/TopProductsCarousel.js";
+import TopProductsModal from "../components/Modal.js";
 
 function HomePage() {
   const dispatch = useDispatch();

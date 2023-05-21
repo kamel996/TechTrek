@@ -9,63 +9,67 @@ import { useDispatch, useSelector } from "react-redux";
 const TopProductsModal = () => {
   const dispatch = useDispatch();
 
-  const [showModal, setShowModal] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [showModal, setShowModal] = useState(true);
 
   const productListTop = useSelector((state) => state.productListTop);
   const { loading, error, products } = productListTop;
+
+  const selectedProduct = products && products.slice(0, 1);
 
   useEffect(() => {
     dispatch(listProductsTop());
   }, [dispatch]);
 
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setShowModal(true);
+    }, 30000); // 30 seconds
+
+    return () => clearTimeout(timeout);
+  }, []);
+
   const handleModalClose = () => {
     setShowModal(false);
   };
 
-  const handleProductClick = (product) => {
-    setSelectedProduct(product);
-    setShowModal(true);
-  };
+  console.log(selectedProduct, "from prod");
 
   return (
     <>
-      <h2>Top Products on Sale</h2>
       {loading ? (
         <Loading />
       ) : error ? (
         <Message variant="danger">{error}</Message>
       ) : (
         <>
-          {products.map((product) => (
-            <div key={product._id} onClick={() => handleProductClick(product)}>
-              <h3>{product.name}</h3>
-              <img src={product.image} alt={product.name} />
-            </div>
+          {selectedProduct.map((item) => (
+            <Modal show={showModal} onHide={handleModalClose} centered>
+              <Modal.Header closeButton>
+                <Modal.Title>Our Top Rated Product</Modal.Title>
+              </Modal.Header>
+              <div style={{ display: "flex", backgroundColor: "black" }}>
+                <Modal.Body style={{ flex: "1" }}>
+                  <h4 style={{color: 'white'}}>{item.name}</h4>
+                  <Image
+                    src={item.image}
+                    alt={item.name}
+                    fluid
+                    style={{ height: "20rem" }}
+                  />
+                </Modal.Body>
+                <Modal.Body style={{ flex: "0.5" }}>
+                  <div>
+                    <p>buy it now</p>
+                  </div>
+                </Modal.Body>
+              </div>
+
+              <Modal.Footer>
+                <Button>buy now</Button>
+              </Modal.Footer>
+            </Modal>
           ))}
         </>
-      )}
-
-      {selectedProduct && (
-        <Modal show={showModal} onHide={handleModalClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>{selectedProduct.name}</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <Image
-              src={selectedProduct.image}
-              alt={selectedProduct.name}
-              fluid
-            />
-            <h4>${selectedProduct.price}</h4>
-            <p>{selectedProduct.description}</p>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleModalClose}>
-              Close
-            </Button>
-          </Modal.Footer>
-        </Modal>
       )}
     </>
   );
