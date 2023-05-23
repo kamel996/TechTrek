@@ -19,7 +19,12 @@ function Header() {
   return (
     <Container>
       <header>
-        <Navbar bg="black" variant="dark" expand="lg" collapseOnSelect>
+        <Navbar
+          style={{ backgroundColor: "#0c2e53",   borderRadius: '0 0 8px 8px' }}
+          variant="dark"
+          expand="lg"
+          collapseOnSelect
+        >
           <Container>
             <LinkContainer to="/">
               <Navbar.Brand>E-commerce</Navbar.Brand>
@@ -28,7 +33,6 @@ function Header() {
 
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
-
               <Nav style={{ marginLeft: "auto" }}>
                 <LinkContainer to="cart">
                   <Nav.Link>

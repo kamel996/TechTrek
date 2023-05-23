@@ -49,7 +49,6 @@ function ProductEditPage() {
     error: errorUpdate,
   } = productUpdate;
 
-
   useEffect(() => {
     if (successUpdate) {
       dispatch({ type: PRODUCT_UPDATE_RESET });
@@ -67,7 +66,7 @@ function ProductEditPage() {
         setPrice(product.price);
       }
     }
-  }, [id, dispatch, navigate, successUpdate,product]);
+  }, [id, dispatch, navigate, successUpdate, product]);
 
   const uploadFileHandler = async (e) => {
     const file = e.target.files[0];

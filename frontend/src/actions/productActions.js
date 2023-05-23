@@ -113,7 +113,11 @@ export const createProduct = (product) => async (dispatch, getState) => {
       },
     };
 
-    const response = await axios.post(`${API_URL}/api/products`, product, config);
+    const response = await axios.post(
+      `${API_URL}/api/products`,
+      product,
+      config
+    );
     console.log(response, "im data in createrequest");
     dispatch({
       type: PRODUCT_CREATE_SUCCESS,

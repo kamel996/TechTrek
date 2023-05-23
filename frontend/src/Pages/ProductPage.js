@@ -80,7 +80,12 @@ function ProductPage(props) {
         <>
           <Row>
             <Col md={6}>
-              <Image src={product.image} alt={product.name} fluid style={{maxHeight: '40rem'}} />
+              <Image
+                src={product.image}
+                alt={product.name}
+                fluid
+                style={{ maxHeight: "40rem" }}
+              />
             </Col>
             <Col md={3}>
               <ListGroup variant="flush">

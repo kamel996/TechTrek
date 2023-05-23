@@ -1,6 +1,11 @@
 import axios from "axios";
 
-import { CARD_ADD_ITEM, CARD_REMOVE_ITEM, CARD_SAVE_SHIPPING_ADDRESS, CARD_SAVE_PAYMENT_METHOD } from "../constants/cartContant";
+import {
+  CARD_ADD_ITEM,
+  CARD_REMOVE_ITEM,
+  CARD_SAVE_SHIPPING_ADDRESS,
+  CARD_SAVE_PAYMENT_METHOD,
+} from "../constants/cartContant";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -30,7 +35,6 @@ export const removeFromCart = (id) => async (dispatch, getState) => {
   localStorage.setItem("cartItems", JSON.stringify(getState().cart.cardItems));
 };
 
-
 export const saveShippingAddress = (data) => (dispatch) => {
   dispatch({
     type: CARD_SAVE_SHIPPING_ADDRESS,
@@ -39,8 +43,6 @@ export const saveShippingAddress = (data) => (dispatch) => {
   localStorage.setItem("shippingAddress", JSON.stringify(data));
 };
 
-
-
 export const savePaymentMethod = (data) => (dispatch) => {
   dispatch({
     type: CARD_SAVE_PAYMENT_METHOD,
@@ -48,4 +50,3 @@ export const savePaymentMethod = (data) => (dispatch) => {
   });
   localStorage.setItem("paymentMethod", JSON.stringify(data));
 };
-

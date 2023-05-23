@@ -12,7 +12,6 @@ code {
     monospace;
 }
 
-
 .carousel-item-next,
 .carousel-item-prev,
 .carousel-item.active {
@@ -46,31 +45,51 @@ code {
   margin-left: 29rem;
 }
 .buy-now-button {
-  background-color: #548fc9;
+  background-color: #0c2e53;
+  border-radius: 8px;
   color: white;
   padding: 1rem 4.37rem;
 }
 .buy-now-buttonn {
   color: white;
-  padding:1rem 3.2rem;
+  border-radius: 8px;
+
+  padding: 1rem 3.2rem;
 }
 .buy-now-button:hover {
-  background-color: #0c2e53 !important;
+  background-color: #548fc9 !important;
   color: white;
+  border-radius: 8px;
   padding: 1rem 4.37rem;
 }
 
+.btn-outline-search {
+  --bs-btn-color: #548fc9;
+  --bs-btn-border-color: #548fc9;
+  --bs-btn-hover-color: #0c2e53;
+  --bs-btn-hover-bg: #548fc9;
+  --bs-btn-hover-border-color: #548fc9;
+  --bs-btn-focus-shadow-rgb: 12, 46, 83;
+  --bs-btn-active-color: #0c2e53;
+  --bs-btn-active-bg: #548fc9;
+  --bs-btn-active-border-color: #548fc9;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #548fc9;
+  --bs-btn-disabled-bg: transparent;
+  --bs-btn-disabled-border-color: #548fc9;
+  --bs-gradient: none;
+}
 .product-details-link {
   display: inline-block;
   position: relative;
   text-decoration: none;
-  color: #333;
+  color: #0c2e53;
   font-weight: bold;
   transition: color 0.3s ease-in-out;
 }
 
 .product-details-link:hover {
-  color: #3cc452;
+  color: #548fc9;
 }
 
 .product-details-link::after {
@@ -80,7 +99,7 @@ code {
   bottom: -2px;
   width: 100%;
   height: 2px;
-  background-color: #149445;
+  background-color: #548fc9;
   transform: scaleX(0);
   transition: transform 0.3s ease-in-out;
 }
@@ -106,6 +125,9 @@ code {
 .card-img-top {
   height: 14rem;
 }
+/* .container-header{
+background-color: rgb(15, 78, 212);
+    } */
 
 @media (max-width: 1400px) {
   .carousel-caption h3 {

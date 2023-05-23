@@ -18,10 +18,12 @@ const SearchBox = () => {
   const inputStyle = {
     marginRight: "0.17rem",
     marginLeft: "5rem",
+    borderRadius: "4 px",
   };
 
   const buttonStyle = {
     padding: "0.5rem",
+    borderRadius: "4px",
   };
 
   return (
@@ -34,7 +36,7 @@ const SearchBox = () => {
           placeholder="Search products..."
           style={inputStyle}
         />
-        <Button type="submit" variant="outline-success" style={buttonStyle}>
+        <Button type="submit" variant="outline-search" style={buttonStyle}>
           Search
         </Button>
       </div>

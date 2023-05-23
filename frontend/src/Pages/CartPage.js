@@ -80,7 +80,7 @@ const CartPage = () => {
                         {item.countInStock >= 1 && (
                           <FormControl
                             as="select"
-                            value={qty}
+                            value={item.qty}
                             onChange={(e) => {
                               const updatedQty = Number(e.target.value);
                               dispatch(addToCart(item.product, updatedQty));
