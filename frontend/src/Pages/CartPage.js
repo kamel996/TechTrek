@@ -34,7 +34,6 @@ const CartPage = () => {
 
   const cart = useSelector((state) => state.cart);
 
-  console.log(qty, "imqtyyryy");
 
   const { cardItems } = cart;
   const countInStock = cardItems?.countInStock;
@@ -53,7 +52,6 @@ const CartPage = () => {
     navigate("/login?redirect=/shipping");
     setRender((prev) => !prev);
   };
-  console.log("carditemmms", cardItems);
   return (
     <Row>
       <Col md={8}>

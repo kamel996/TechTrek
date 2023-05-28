@@ -61,7 +61,6 @@ function ProductCreatePage() {
   const uploadFileHandler = async (e) => {
     const file = e.target.files[0];
     const formData = new FormData();
-    console.log(file, "im file");
     formData.append("image", file);
     setUploading(true);
 

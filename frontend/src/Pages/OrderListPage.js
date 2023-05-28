@@ -23,7 +23,6 @@ const OrderListPage = () => {
   const { pageNumber } = useParams() || 1;
   const { keyword } = useParams();
 
-  console.log(orders, "orderss");
 
   useEffect(() => {
     dispatch({ type: ORDER_ALL_RESET });

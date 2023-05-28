@@ -16,8 +16,6 @@ function HomePage() {
   const { keyword } = useParams();
   const { pageNumber } = useParams();
 
-  console.log(useParams());
-
   const productList = useSelector((state) => state.productList);
 
   const { loading, error, products, page, pages } = productList;
@@ -27,7 +25,7 @@ function HomePage() {
   }, [dispatch, keyword, pageNumber]);
 
   return (
-    <>
+    <div style={{ backgroundColor: "whitesmoke" }}>
       {!keyword && <TopProductsCarousel />}
       <h1 style={{ marginTop: "0.6rem" }}>Latest Products</h1>
 
@@ -37,7 +35,7 @@ function HomePage() {
         <Message variant="danger">{error}</Message>
       ) : (
         <>
-          <Row style={{ backgroundColor: "whitesmoke" }}>
+          <Row>
             {products.map((product) => (
               <Col key={product._id} sm={12} md={4} lg={3} xl={3}>
                 <Product product={product} />
@@ -53,7 +51,7 @@ function HomePage() {
           />
         </>
       )}
-    </>
+    </div>
   );
 }
 

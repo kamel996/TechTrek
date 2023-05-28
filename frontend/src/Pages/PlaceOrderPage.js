@@ -105,7 +105,6 @@ const PlaceOrderPage = () => {
                 <Message>Your cart is empty</Message>
               ) : (
                 <ListGroup variant="flush">
-                  {console.log(cart.cardItems)}
                   {cart.cardItems &&
                     cart.cardItems.map((item, index) => (
                       <ListGroupItem key={index}>

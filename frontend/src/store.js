@@ -69,6 +69,8 @@ const paymentMethodFromStorage = localStorage.getItem("paymentMethod")
   ? JSON.parse(localStorage.getItem("paymentMethod"))
   : {};
 
+  console.log(userInfoFromStorage, 'userinfo')
+
 const firstState = {
   cart: {
     cardItems: cartItemsFromStorage,

@@ -20,20 +20,23 @@ function Header() {
     <Container>
       <header>
         <Navbar
-          style={{ backgroundColor: "#0c2e53",   borderRadius: '0 0 8px 8px' }}
+          style={{ backgroundColor: "#0c2e53", borderRadius: "0 0 8px 8px" }}
           variant="dark"
           expand="lg"
           collapseOnSelect
         >
           <Container>
             <LinkContainer to="/">
-              <Navbar.Brand>E-commerce</Navbar.Brand>
+              <Navbar.Brand>TechTrek</Navbar.Brand>
             </LinkContainer>
             <SearchBox />
 
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav style={{ marginLeft: "auto" }}>
+                <LinkContainer to="/">
+                  <Nav.Link>home</Nav.Link>
+                </LinkContainer>
                 <LinkContainer to="cart">
                   <Nav.Link>
                     <i className="fas fa-shopping-cart"></i>Cart

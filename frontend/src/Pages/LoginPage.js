@@ -40,7 +40,6 @@ function LoginPage() {
     e.preventDefault();
     dispatch(login(email, password));
   };
-  console.log(redirect, "im redirect");
   return (
     <FormContainer>
       <h1>Sign In</h1>

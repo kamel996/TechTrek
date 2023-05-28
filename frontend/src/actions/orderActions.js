@@ -43,7 +43,6 @@ export const createOrder = (order) => async (dispatch, getState) => {
       type: ORDER_CREATE_SUCCESS,
       payload: response.data,
     });
-    console.log(response, "imresss");
   } catch (error) {
     dispatch({
       type: ORDER_CREATE_FAIL,
@@ -71,7 +70,6 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
     };
 
     const { data } = await axios.get(`${API_URL}/api/orders/${id}`, config);
-    console.log(data, "iam data"); // Log the data variable to check its contents
 
     dispatch({
       type: ORDER_DETAILS_SUCCESS,

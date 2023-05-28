@@ -43,7 +43,6 @@ function UserEditPage() {
     error: errorUpdate,
   } = userUpdate;
 
-  console.log(id, "im userid");
 
   useEffect(() => {
     if (successUpdate) {

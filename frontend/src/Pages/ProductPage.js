@@ -65,7 +65,6 @@ function ProductPage(props) {
     e.preventDefault();
     dispatch(createdProductReview(id, { rating, comment }));
   };
-  console.log(id, "im id");
   return (
     <>
       <Link className="btn btn-light my-3" to="/">

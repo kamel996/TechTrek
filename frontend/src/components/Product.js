@@ -35,6 +35,7 @@ function Product({ product }) {
             src={product.image}
             variant="top"
             className="product-image"
+            style={{objectFit: 'contain'}}
           />
         </Link>
         <Card.Body>

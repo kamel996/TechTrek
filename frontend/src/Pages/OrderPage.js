@@ -65,7 +65,6 @@ const OrderPage = () => {
     dispatch(payOrder(id, paymentResult));
   };
 
-  console.log(loadingDelivered, "loading...");
   useEffect(() => {
     if (!userInfo) {
       navigate("/login");
@@ -76,7 +75,6 @@ const OrderPage = () => {
         const { data: clientId } = await axios.get(
           "http://localhost:5000/api/config/paypal"
         );
-        console.log(clientId, "dedwewd");
 
         const script = document.createElement("script");
         script.type = "text/javascript";
@@ -86,7 +84,6 @@ const OrderPage = () => {
           setSdkReady(true);
         };
         document.body.appendChild(script);
-        console.log(script, "scriptt");
       } catch (error) {
         throw new Error(
           `SDK Validation error: 'Invalid query value for client-id: `
@@ -119,7 +116,7 @@ const OrderPage = () => {
     <>
       {order && order.orderItems && order.user && (
         <>
-          <h1>Order {order._id}</h1>
+          {order.isPaid && <h1>Order {order._id}</h1>}
           <Row>
             <Col md={8}>
               <ListGroup variant="flush">

@@ -32,7 +32,6 @@ const TopProductsModal = () => {
     setShowModal(false);
   };
 
-  console.log(selectedProduct, "from prod");
 
   return (
     <>

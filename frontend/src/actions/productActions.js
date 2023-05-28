@@ -34,9 +34,6 @@ export const listProducts =
       const { data } = await axios.get(
         `${API_URL}/api/products?keyword=${keyword}&pageNumber=${pageNumber}`
       );
-
-      console.log(data, "getting productsss");
-
       dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
     } catch (error) {
       dispatch({
@@ -56,8 +53,6 @@ export const listProductDetails = (id) => async (dispatch) => {
 
     dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data.data });
   } catch (error) {
-    console.log(error);
-
     dispatch({
       type: PRODUCT_DETAILS_FAIL,
       payload:
@@ -118,7 +113,6 @@ export const createProduct = (product) => async (dispatch, getState) => {
       product,
       config
     );
-    console.log(response, "im data in createrequest");
     dispatch({
       type: PRODUCT_CREATE_SUCCESS,
     });
@@ -167,7 +161,6 @@ export const createdProductReview =
   };
 
 export const updateProduct = (product) => async (dispatch, getState) => {
-  console.log(product);
   try {
     dispatch({
       type: PRODUCT_UPDATE_REQUEST,

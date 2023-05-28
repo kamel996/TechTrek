@@ -32,7 +32,6 @@ const addOrderItems = expressAsyncHandler(async (req, res) => {
       const product = await Product.findById(orderItem.product);
 
       if (product) {
-        console.log("Order Items", product.countInStock);
         product.countInStock -= orderItem.qty;
         await product.save();
       }
@@ -97,7 +96,6 @@ const getOrders = expressAsyncHandler(async (req, res) => {
         },
       }
     : {};
-  console.log(keyword, "im keyword");
 
   try {
     const count = await Order.count({ ...keyword });
