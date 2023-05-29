@@ -29,7 +29,6 @@ import Loading from "../components/Loading";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
-
 const OrderPage = () => {
   const orderDetails = useSelector((state) => state.orderDetails);
   const { order, loading, error } = orderDetails;
@@ -184,7 +183,7 @@ const OrderPage = () => {
                             <Row>
                               <Col md={1}>
                                 <Image
-                                  src={`${API_URL}${product.image}`}
+                                  src={`${API_URL}${item.image}`}
                                   alt={item.name}
                                   fluid
                                   rounded

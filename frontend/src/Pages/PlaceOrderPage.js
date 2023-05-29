@@ -103,7 +103,7 @@ const PlaceOrderPage = () => {
 
             <ListGroupItem>
               <h2>Order Items</h2>
-              {Card.cardItems && cart.cardItems.length === 0 ? (
+              {cart.cardItems && cart.cardItems.length === 0 ? (
                 <Message>Your cart is empty</Message>
               ) : (
                 <ListGroup variant="flush">
@@ -113,7 +113,7 @@ const PlaceOrderPage = () => {
                         <Row>
                           <Col md={1}>
                             <Image
-                              src={`${API_URL}${product.image}`}
+                              src={`${API_URL}${item.image}`}
                               alt={item.name}
                               fluid
                               rounded
