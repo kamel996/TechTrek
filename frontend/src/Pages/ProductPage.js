@@ -25,6 +25,10 @@ import Loading from "../components/Loading";
 import Message from "../components/Message";
 import { PRODUCT_CREATE_REVIEW_RESET } from "../constants/productConstant";
 import { CARD_RESET_ITEM } from "../constants/cartContant";
+
+
+const API_URL = process.env.REACT_APP_API_URL;
+
 function ProductPage(props) {
   const [qty, setQty] = useState(1);
   const [rating, setRating] = useState(0);
@@ -80,7 +84,7 @@ function ProductPage(props) {
           <Row>
             <Col md={6}>
               <Image
-                src={product.image}
+                src={`${API_URL}${product.image}`}
                 alt={product.name}
                 fluid
                 style={{ maxHeight: "40rem" }}

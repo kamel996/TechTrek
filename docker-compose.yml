@@ -1,0 +1,36 @@
+version: '3'
+services:
+  slackfrontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.reactUI
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_API_URL=http://localhost:5000
+    depends_on:
+      - db
+
+  nodebackend:
+    build:
+      context: .
+      dockerfile: Dockerfile.node
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+    environment:
+      - NODE_ENV=development
+      - PORT=9000
+      - MONGODB_URI=mongodb+srv://kamel:12345@cluster0.pvwr1nk.mongodb.net/shop
+      - JWT_SECRET=abc123
+      - PAYPAL_CLIENT_ID=AfFfT6R3Ca08-n2PwjAVplEDFITwusstA-gOMR4UFcwGRsVR_5A0tgJmy_vNZNLoMcQJdiHMqCD8kfq8
+      - GOOGLE_CLIENT_ID=749901222143-81vg8cdunnhee4jap7g2uanudfr31b0b.apps.googleusercontent.com
+
+  db:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+
+volumes:
+  slack_db:

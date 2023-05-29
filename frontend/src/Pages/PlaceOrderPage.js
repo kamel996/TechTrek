@@ -20,6 +20,8 @@ import {
 } from "../constants/orderConstant";
 import { CARD_RESET_ITEM } from "../constants/cartContant";
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 const PlaceOrderPage = () => {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
@@ -111,7 +113,7 @@ const PlaceOrderPage = () => {
                         <Row>
                           <Col md={1}>
                             <Image
-                              src={item.image}
+                              src={`${API_URL}${product.image}`}
                               alt={item.name}
                               fluid
                               rounded

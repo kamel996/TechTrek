@@ -5,6 +5,7 @@ import Loading from "./Loading";
 import Message from "./Message";
 import { listProductsTop } from "../actions/productActions";
 import { useDispatch, useSelector } from "react-redux";
+const API_URL = process.env.REACT_APP_API_URL;
 
 const TopProductsCarousel = () => {
   const dispatch = useDispatch();
@@ -26,7 +27,7 @@ const TopProductsCarousel = () => {
         <Carousel.Item key={product._id}>
           <Link to={`/product/${product._id}`}>
             <Image
-              src={product.image}
+              src={`${API_URL}${product.image}`}
               alt={product.name}
               fluid
               style={{ backgroundColor: "transparent" }}

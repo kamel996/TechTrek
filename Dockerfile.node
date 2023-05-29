@@ -1,0 +1,17 @@
+FROM node:20
+WORKDIR /app
+COPY ./package.json ./package.json
+COPY ./backend/server.js ./server.js
+COPY ./backend/config /app/config
+COPY ./backend/routes /app/routes
+COPY ./backend/controllers /app/controllers
+COPY ./backend/models /app/models
+COPY ./backend/utils /app/utils
+COPY ./backend/middleware /app/middleware
+COPY  ./uploads /app/uploads
+
+
+
+RUN npm install 
+EXPOSE 5000
+CMD ["node", "./server.js"]

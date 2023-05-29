@@ -3,6 +3,9 @@ import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Rating from "./Rating";
 
+const API_URL = process.env.REACT_APP_API_URL;
+
+
 function Product({ product }) {
   const renderDescription = () => {
     if (product.description.length <= 40) {
@@ -32,7 +35,7 @@ function Product({ product }) {
       >
         <Link to={`/product/${product._id}#top`} className="product-image-link">
           <Card.Img
-            src={product.image}
+            src={`${API_URL}${product.image}`}
             variant="top"
             className="product-image"
             style={{objectFit: 'contain'}}

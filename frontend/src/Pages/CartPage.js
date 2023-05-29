@@ -19,6 +19,10 @@ import {
 import { addToCart, removeFromCart } from "../actions/cartActions";
 
 import Message from "../components/Message";
+
+const API_URL = process.env.REACT_APP_API_URL;
+
+
 const CartPage = () => {
   const { id } = useParams();
   const [searchParams] = useSearchParams();
@@ -68,7 +72,12 @@ const CartPage = () => {
                   <ListGroupItem key={item.product}>
                     <Row>
                       <Col md={2}>
-                        <Image src={item.image} alt={item.name} fluid rounded />
+                        <Image
+                          src={`${API_URL}${item.image}`}
+                          alt={item.name}
+                          fluid
+                          rounded
+                        />
                       </Col>
                       <Col md={3}>
                         <Link to={`/product/${item.product}`}>{item.name}</Link>
