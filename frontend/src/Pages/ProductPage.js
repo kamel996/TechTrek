@@ -26,7 +26,6 @@ import Message from "../components/Message";
 import { PRODUCT_CREATE_REVIEW_RESET } from "../constants/productConstant";
 import { CARD_RESET_ITEM } from "../constants/cartContant";
 
-
 const API_URL = process.env.REACT_APP_API_URL;
 
 function ProductPage(props) {
@@ -156,7 +155,7 @@ function ProductPage(props) {
                   <ListGroup.Item>
                     <Button
                       onClick={addToCartHandler}
-                      className="btn-block"
+                      className="btn-block addtocartkk"
                       type="button"
                       disabled={product.countInStock <= 0}
                       style={{ padding: "1.1rem 5.66rem" }}
@@ -170,9 +169,12 @@ function ProductPage(props) {
           </Row>
           <Row>
             <Col md={6}>
-              <h2>Reviews</h2>
-              {product.reviews.length === 0 && <Message>No Reviews</Message>}
               <ListGroup variant="flush">
+                <ListGroupItem>
+                  <h2 style={{ marginLeft: "-15px" }}>Reviews</h2>
+                </ListGroupItem>
+                {product.reviews.length === 0 && <Message>No Reviews</Message>}
+
                 {product.reviews.map((review) => (
                   <ListGroupItem key={review._id}>
                     <strong>{review.name}</strong>
@@ -181,7 +183,7 @@ function ProductPage(props) {
                     <p>{review.comment}</p>
                   </ListGroupItem>
                 ))}
-                <ListGroupItem>
+                <ListGroupItem style={{ marginLeft: "-15px" }}>
                   <h2>Write a Cutomer Review</h2>
                   {productReviewError && (
                     <Message variant="danger">{productReviewError}</Message>

@@ -30,7 +30,8 @@ const TopProductsCarousel = () => {
               src={`${API_URL}${product.image}`}
               alt={product.name}
               fluid
-              style={{ backgroundColor: "transparent" }}
+              style={{ backgroundColor: "transparent",  }}
+              className="imgkk"
             />
             <Carousel.Caption className="carousel-caption">
               <h2>

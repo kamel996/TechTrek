@@ -35,6 +35,7 @@ const SearchBox = () => {
           onChange={(e) => setKeyword(e.target.value)}
           placeholder="Search products..."
           style={inputStyle}
+          className="searchk"
         />
         <Button type="submit" variant="outline-search" style={buttonStyle}>
           Search

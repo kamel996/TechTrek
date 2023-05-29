@@ -151,8 +151,23 @@ background-color: rgb(15, 78, 212);
   .navbar > .container-xxl {
     display: flex;
   }
-  .navbar-toggler {
-    position: absolute;
-    margin-top: 42px;
+  .searchk {
+    width: 6rem;
+    margin-right: 0.17rem;
+    margin-left: -2rem !important;
+  }
+  .addtocartkk {
+    margin-left: -13px;
+  }
+
+   .imgkk {
+    width: 42rem;
+  }
+
+}
+
+@media (min-width: 600px) {
+  .imgkk {
+    width: 42rem;
   }
 }
