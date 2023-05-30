@@ -1,0 +1,45 @@
+version: 1
+services:
+  slackfrontend:
+    source:
+      imageUri: public.ecr.aws/o3l8n9d9/techtreck/frontend
+      port: 3000
+    environment:
+      - REACT_APP_API_URL=http://localhost:5000
+    healthCheck:
+      path: /
+      protocol: HTTP
+      timeout: 5
+      interval: 30
+      unhealthyThreshold: 3
+      healthyThreshold: 3
+    mountPoints:
+      - containerPath: /app/uploads
+        sourceVolume: slack_db
+
+  nodebackend:
+    source:
+      imageUri: public.ecr.aws/o3l8n9d9/techtreck/nodebackend
+      port: 5000
+    environment:
+      - NODE_ENV=development
+      - PORT=9000
+      - MONGODB_URI=mongodb+srv://kamel:12345@cluster0.pvwr1nk.mongodb.net/shop
+      - JWT_SECRET=abc123
+      - PAYPAL_CLIENT_ID=AfFfT6R3Ca08-n2PwjAVplEDFITwusstA-gOMR4UFcwGRsVR_5A0tgJmy_vNZNLoMcQJdiHMqCD8kfq8
+      - GOOGLE_CLIENT_ID=749901222143-81vg8cdunnhee4jap7g2uanudfr31b0b.apps.googleusercontent.com
+    healthCheck:
+      path: /
+      protocol: HTTP
+      timeout: 5
+      interval: 30
+      unhealthyThreshold: 3
+      healthyThreshold: 3
+    mountPoints:
+      - containerPath: /app/uploads
+        sourceVolume: slack_db
+
+  db:
+    source:
+      imageUri: mongo:latest
+      port: 27017
