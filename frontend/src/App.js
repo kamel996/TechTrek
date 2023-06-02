@@ -24,8 +24,20 @@ import ProductListPage from "./Pages/ProductListPage";
 import ProductEditPage from "./Pages/ProductEditPage";
 import OrderListPage from "./Pages/OrderListPage";
 import ProductCreatePage from "./Pages/ProductCreate.Page";
+import { ToastContainer } from "react-toastify";
 
 function App() {
+  const CustomToastContainer = () => {
+    const toastStyle = {
+      marginLeft: "-189px",
+      width: "70%",
+      height: "100%",
+      
+    };
+
+    return <ToastContainer toastStyle={toastStyle} />;
+  };
+
   return (
     <BrowserRouter>
       <Header />
@@ -69,6 +81,7 @@ function App() {
             <Route path="/page/:pageNumber" Component={HomePage} />
             <Route path="/" Component={HomePage} exact />
           </Routes>
+          <CustomToastContainer />
         </Container>
       </main>
       <Footer className="sticky-footer" />

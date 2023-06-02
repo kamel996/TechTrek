@@ -26,7 +26,7 @@ function PaymentPage() {
     navigate("/shipping");
   }
 
-  const [paymentMethod, setPaymentMethod] = useState("PayPal");
+  const [paymentMethod, setPaymentMethod] = useState('PayPal');
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -36,6 +36,7 @@ function PaymentPage() {
     navigate("/placeorder");
   };
 
+  
   return (
     <FormContainer>
       <CheckoutSteps step1 step2 step3 />
@@ -43,16 +44,26 @@ function PaymentPage() {
       <Form onSubmit={submitHandler}>
         <Form.Group>
           <Form.Label as="legend">Select Method</Form.Label>
-          <Col>
+          <Col style={{ display: "flex", gap: "25px" }}>
             <Form.Check
               type="radio"
               label="PayPal or Credit Card"
               id="PayPal"
               name="paymentMethod"
               value="PayPal"
-              checked
+              checked={paymentMethod === "PayPal"} 
               onChange={(e) => setPaymentMethod(e.target.value)}
-            ></Form.Check>
+            />
+
+            <Form.Check
+              type="radio"
+              label="Cash on delivery"
+              id="CashOnDelivery"
+              name="paymentMethod"
+              value="Cash on delivery"
+              checked={true && paymentMethod === "Cash on delivery"} 
+              onChange={(e) => setPaymentMethod(e.target.value)}
+            />
             {/* <Form.Check
               type="radio"
               label="Stripe"
@@ -64,7 +75,7 @@ function PaymentPage() {
           </Col>
         </Form.Group>
 
-        <Button variant="primary" type="submit">
+        <Button variant="primary" type="submit" style={{ marginTop: "17px" }}>
           Continue
         </Button>
       </Form>

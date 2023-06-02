@@ -106,7 +106,6 @@ const getOrders = expressAsyncHandler(async (req, res) => {
       .populate("user", "id name");
 
     res.json({ orders, page, pages: Math.ceil(count / pagesize) });
-    
   } catch (error) {
     console.error(error);
   }
@@ -118,6 +117,7 @@ const updateOrderToDelivered = expressAsyncHandler(async (req, res) => {
   if (order) {
     order.isDelivered = true;
     order.deliveredAt = Date.now();
+    order.isPaid = true
     const updatedOrder = await order.save();
     res.json(updatedOrder);
   } else {

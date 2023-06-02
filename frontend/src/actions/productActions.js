@@ -144,7 +144,7 @@ export const createdProductReview =
         },
       };
 
-      axios.post(`${API_URL}/api/products/${productId}/review`, review, config);
+    await axios.post(`${API_URL}/api/products/${productId}/review`, review, config);
 
       dispatch({
         type: PRODUCT_CREATE_REVIEW_SUCCESS,

@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 import {
   Row,
@@ -49,7 +52,7 @@ function ProductPage(props) {
     productReviewCreate;
   useEffect(() => {
     if (productReviewSuccess) {
-      alert("Review Submitted");
+      toast.success("Review Submitted");
       setRating(0);
       setComment("");
       dispatch({ type: PRODUCT_CREATE_REVIEW_RESET });
@@ -227,6 +230,7 @@ function ProductPage(props) {
                       Please <Link to="/login">sign in</Link> to write a review
                     </Message>
                   )}
+                  {error && <Message variant="danger">{error}</Message>}
                 </ListGroupItem>
               </ListGroup>
             </Col>

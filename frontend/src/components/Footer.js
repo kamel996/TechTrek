@@ -8,7 +8,7 @@ const Footer = () => {
         <p>
           {" "}
           &copy;
-          <strong>2023 Kamel's Ecommerce. All rights reserved.</strong>{" "}
+          <strong>2023 TechTrek All rights reserved.</strong>{" "}
         </p>
       </Container>
     </footer>

@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../actions/loginActions";
 import { useNavigate } from "react-router-dom";
 import SearchBox from "./SearchBox";
+import { toast } from "react-toastify";
 function Header() {
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
@@ -14,7 +15,8 @@ function Header() {
 
   const logoutHandler = () => {
     dispatch(logout());
-    navigate("/");
+    toast.success("User logged out successfully")
+    navigate("/login");
   };
   return (
     <Container>

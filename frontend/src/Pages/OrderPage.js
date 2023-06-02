@@ -237,7 +237,7 @@ const OrderPage = () => {
                     </Row>
                   </ListGroupItem>
 
-                  {!order.isPaid && (
+                  {order && !order.isPaid && order.paymentMethod =="PayPal" &&  (
                     <ListGroupItem>
                       {loadingPay && <Loader />}
                       {!sdkReady ? (
@@ -259,7 +259,6 @@ const OrderPage = () => {
 
                   {userInfo &&
                     userInfo.isAdmin &&
-                    order.isPaid &&
                     !order.isDelivered && (
                       <ListGroupItem>
                         <Button

@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loading from "../components/Loading";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function LoginPage() {
   const [email, setEmail] = useState("");
@@ -29,16 +30,19 @@ function LoginPage() {
   const redirect = location.search ? location.search.split("=")[1] : "/";
 
   const { loading, userInfo, error } = userLogin;
+  
 
   useEffect(() => {
     if (userInfo) {
       navigate(redirect);
+     toast.success("User logged in successfully");
     }
   }, [navigate, userInfo, redirect]);
 
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(login(email, password));
+
   };
   return (
     <FormContainer>
