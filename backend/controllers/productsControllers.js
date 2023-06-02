@@ -3,11 +3,6 @@ import asyncHandler from "express-async-handler";
 
 export const getProducts = asyncHandler(async (req, res) => {
   const pagesize = 12;
-   if (req.headers["user-agent"].includes("Mobile")) {
-     pagesize = 5; 
-   }
-   console.log(req.headers)
-
   const page = Number(req.query.pageNumber) || 1;
   const keyword = req.query.keyword
     ? {
