@@ -129,19 +129,19 @@ code {
 background-color: rgb(15, 78, 212);
     } */
 
-@media (max-width: 1400px) {
+@media ( max-width: 1400px) {
   .carousel-caption h3 {
     display: none;
   }
-  .carousel img {
-    height: 22rem;
+  .imgkk {
+    height: 18rem !important; 
   }
   .carousel-caption h2 {
     font-size: 1.11rem;
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 650px) {
   .navbar > .container,
   .navbar > .container-fluid,
   .navbar > .container-lg,
@@ -161,7 +161,9 @@ background-color: rgb(15, 78, 212);
   }
 
    .imgkk {
+    margin-top: 50px !important;
     width: 42rem;
+    height: 10rem;
   }
 
 }
