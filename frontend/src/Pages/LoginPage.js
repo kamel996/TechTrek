@@ -67,7 +67,7 @@ function LoginPage() {
             onChange={(e) => setPassword(e.target.value)}
           ></FormControl>
         </Form.Group>
-        <Button type="submit" variant="primary">
+        <Button type="submit" variant="primary" style={{marginTop: '5px'}}>
           Sign In
         </Button>
       </Form>

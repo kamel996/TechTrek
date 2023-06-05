@@ -57,19 +57,18 @@ function ProfilePage() {
       navigate("/login");
     } else {
 
-      if (!user || !user.name || success) {
-        dispatch({ type: USER_UPDATE_PROFILE_RESET });
+      if (!userInfo || !userInfo.name || success) {
+        
         dispatch(getUserDetails("profile"));
         dispatch(myListOrders(keyword, pageNumber));
-           setName(userInfo.name);
-           setEmail(userInfo.email);
-      } else {
 
+      } else {
+        dispatch({ type: USER_UPDATE_PROFILE_RESET });
         setName(userInfo.name);
         setEmail(userInfo.email);
       }
     }
-  }, [navigate, userInfo, dispatch, pageNumber, keyword, success]);
+  }, [navigate, userInfo, dispatch, pageNumber, keyword,]);
 
   const submitHandler = (e) => {
     e.preventDefault();
