@@ -20,6 +20,7 @@ import { myListOrders } from "../actions/orderActions";
 import { useParams } from "react-router-dom";
 import PaginateOrders from "../components/paginateOrder";
 import { ORDER_DETAILS_RESET } from "../constants/orderConstant";
+import { USER_UPDATE_PROFILE_RESET } from "../constants/loginConstant";
 
 function ProfilePage() {
   const [name, setName] = useState("");
@@ -55,7 +56,8 @@ function ProfilePage() {
     if (!userInfo) {
       navigate("/login");
     } else {
-      if (!user.name) {
+      if (!user || !user.name || success) {
+        dispatch({type: USER_UPDATE_PROFILE_RESET})
         dispatch(getUserDetails("profile"));
         dispatch(myListOrders(keyword, pageNumber));
       } else {
@@ -63,7 +65,7 @@ function ProfilePage() {
         setEmail(user.email);
       }
     }
-  }, [navigate, userInfo, dispatch, pageNumber, keyword]);
+  }, [navigate, userInfo, dispatch, pageNumber, keyword, success]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -149,11 +151,17 @@ function ProfilePage() {
                   orders.map((order) => (
                     <tr key={order._id}>
                       <td>{order._id}</td>
-                      <td>{order.createdAt && order.createdAt.substring(0, 10)}</td>
+                      <td>
+                        {order.createdAt && order.createdAt.substring(0, 10)}
+                      </td>
                       <td>{order.totalPrice}</td>
                       <td>
                         {order.isPaid ? (
-                          order.paidAt ? order.paidAt.substring(0, 10) : <p>Paid on delivery</p>
+                          order.paidAt ? (
+                            order.paidAt.substring(0, 10)
+                          ) : (
+                            <p>Paid on delivery</p>
+                          )
                         ) : (
                           <i
                             className="fas fa-times"
