@@ -53,22 +53,25 @@ function ProfilePage() {
 
   useEffect(() => {
     dispatch({ type: ORDER_DETAILS_RESET });
+
     if (!userInfo) {
       navigate("/login");
     } else {
 
       if (!userInfo || !userInfo.name || success) {
-        
         dispatch(getUserDetails("profile"));
         dispatch(myListOrders(keyword, pageNumber));
-
-      } else {
-        dispatch({ type: USER_UPDATE_PROFILE_RESET });
+           setName(userInfo.name);
+           setEmail(userInfo.email);
+      } 
+      else {
+dispatch(getUserDetails("profile"));
+dispatch(myListOrders(keyword, pageNumber));
         setName(userInfo.name);
         setEmail(userInfo.email);
       }
     }
-  }, [navigate, userInfo, dispatch, pageNumber, keyword,]);
+  }, [navigate, userInfo, dispatch, pageNumber, keyword, success]);
 
   const submitHandler = (e) => {
     e.preventDefault();
