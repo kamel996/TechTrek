@@ -50,7 +50,6 @@ function ProfilePage() {
 
   const { pageNumber } = useParams() || 1;
   const { keyword } = useParams();
-console.log('hello', userInfo)
 
   useEffect(() => {
     dispatch({ type: ORDER_DETAILS_RESET });
