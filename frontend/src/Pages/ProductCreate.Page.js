@@ -102,7 +102,7 @@ function ProductCreatePage() {
         Go Back
       </Link>
       <FormContainer>
-        <h1>Create Product</h1>
+        <h1>Add Product</h1>
         {loadingCreate && <Loading />}
         {errorCreate && <Message variant="danger">{errorCreate}</Message>}
         {loading ? (
