@@ -15,7 +15,6 @@ function Header() {
 
   const logoutHandler = () => {
     dispatch(logout());
-    toast.success("User logged out successfully")
     navigate("/login");
   };
   return (
