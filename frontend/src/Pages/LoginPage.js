@@ -35,7 +35,6 @@ function LoginPage() {
   useEffect(() => {
     if (userInfo) {
       navigate(redirect);
-     toast.success("User logged in successfully");
     }
   }, [navigate, userInfo, redirect]);
 
