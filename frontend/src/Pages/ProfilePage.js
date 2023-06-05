@@ -50,19 +50,24 @@ function ProfilePage() {
 
   const { pageNumber } = useParams() || 1;
   const { keyword } = useParams();
+console.log('hello', userInfo)
 
   useEffect(() => {
     dispatch({ type: ORDER_DETAILS_RESET });
     if (!userInfo) {
       navigate("/login");
     } else {
+
       if (!user || !user.name || success) {
-        dispatch({type: USER_UPDATE_PROFILE_RESET})
+        dispatch({ type: USER_UPDATE_PROFILE_RESET });
         dispatch(getUserDetails("profile"));
         dispatch(myListOrders(keyword, pageNumber));
+           setName(userInfo.name);
+           setEmail(userInfo.email);
       } else {
-        setName(user.name);
-        setEmail(user.email);
+
+        setName(userInfo.name);
+        setEmail(userInfo.email);
       }
     }
   }, [navigate, userInfo, dispatch, pageNumber, keyword, success]);

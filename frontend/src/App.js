@@ -50,7 +50,7 @@ function App() {
             <Route path="/shipping" Component={ShippingPage} />
             <Route path="/login" Component={LoginPage} />
             <Route path="/register" Component={RegisterPage} />
-            <Route path="/profile" Component={ProfilePage} />
+            <Route path="/profile" Component={ProfilePage} exact />
             <Route path="/product/:id" Component={ProductPage} />
             <Route path="/cart/:id?" Component={CartPage} />
             <Route path="/admin/orderlist" Component={OrderListPage} exact />
