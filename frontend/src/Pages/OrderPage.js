@@ -75,7 +75,7 @@ const OrderPage = () => {
     const addPaypalScript = async () => {
       try {
         const { data: clientId } = await axios.get(
-          "http://localhost:5000/api/config/paypal"
+          "https://e-commerce-i8wj.onrender.com/api/config/paypal"
         );
 
         const script = document.createElement("script");
