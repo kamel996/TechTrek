@@ -54,6 +54,7 @@ const PlaceOrderPage = () => {
     if (success) {
       navigate(`/order/${order._id}`);
       dispatch({ type: ORDER_CREATE_RESET });
+      dispatch({type: CARD_RESET_ITEM})
     }
   }, [navigate, success]);
 
@@ -71,6 +72,7 @@ const PlaceOrderPage = () => {
     );
     localStorage.removeItem("cartItems");
     dispatch({ type: ORDER_DETAILS_RESET });
+
   };
 
   return (

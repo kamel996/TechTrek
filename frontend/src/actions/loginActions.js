@@ -26,6 +26,7 @@ import {
   USER_UPDATE_SUCCESS,
 } from "../constants/loginConstant";
 import { ORDER_MY_LIST_RESET } from "../constants/orderConstant";
+import { CARD_RESET_ITEM } from "../constants/cartContant";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -64,7 +65,9 @@ export const login = (email, password) => async (dispatch) => {
 };
 export const logout = () => (dispatch) => {
   localStorage.removeItem("userInfo");
+    localStorage.removeItem("cartItems");
   dispatch({ type: USER_LOGOUT });
+  dispatch({type: CARD_RESET_ITEM})
   dispatch({ type: USER_DETAILS_RESET });
   dispatch({ type: ORDER_MY_LIST_RESET });
   dispatch({ type: USER_LIST_RESET });
