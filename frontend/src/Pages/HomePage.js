@@ -23,7 +23,7 @@ function HomePage() {
   useEffect(() => {
     dispatch(listProducts(keyword, pageNumber));
   }, [dispatch, keyword, pageNumber]);
-const isMobileDevice = window.innerWidth <= 768;
+  const isMobileDevice = window.innerWidth <= 768;
   return (
     <div style={{ backgroundColor: "whitesmoke" }}>
       {!keyword && <TopProductsCarousel />}
@@ -37,8 +37,8 @@ const isMobileDevice = window.innerWidth <= 768;
         <>
           <Row>
             {products
-              .slice(0, isMobileDevice ? 5 : products.length)
-              .map((product) => (
+              ?.slice(0, isMobileDevice ? 5 : products?.length)
+              ?.map((product) => (
                 <Col key={product._id} sm={12} md={4} lg={3} xl={3}>
                   <Product product={product} />
                 </Col>

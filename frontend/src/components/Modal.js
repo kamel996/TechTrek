@@ -14,7 +14,7 @@ const TopProductsModal = () => {
   const productListTop = useSelector((state) => state.productListTop);
   const { loading, error, products } = productListTop;
 
-  const selectedProduct = products && products.slice(0, 1);
+  const selectedProduct = products && products?.slice(0, 1);
 
   useEffect(() => {
     dispatch(listProductsTop());

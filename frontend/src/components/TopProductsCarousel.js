@@ -23,7 +23,7 @@ const TopProductsCarousel = () => {
     <Message variant="danger">{error}</Message>
   ) : (
     <Carousel pause="hover" className="bg-dark" style={{ borderRadius: "8px" }}>
-      {products.map((product) => (
+      {products?.map((product) => (
         <Carousel.Item key={product._id}>
           <Link to={`/product/${product._id}`}>
             <Image
@@ -37,7 +37,7 @@ const TopProductsCarousel = () => {
               <h2>
                 {product.name} ({product.price} $)
               </h2>
-              <h3>{product.description.slice(0, 200)}</h3>
+              <h3>{product?.description?.slice(0, 200)}</h3>
             </Carousel.Caption>
           </Link>
         </Carousel.Item>
